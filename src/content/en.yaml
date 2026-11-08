@@ -1,0 +1,97 @@
+# English content of hamama.org
+# Edit the text after the colons. Keep the indentation (spaces) as it is.
+
+meta:
+  lang: en
+  dir: ltr
+  title: "The Hamama — A living space for shared creation"
+  description: "A living space for shared creation, community learning and human-centered innovation."
+
+nav:
+  brand: "The Hamama"
+  items:
+    - { label: "What We Do", href: "#what" }
+    - { label: "Focus", href: "#focus" }
+    - { label: "Portal", href: "https://portal.hamama.org" }
+    - { label: "How We Work", href: "#work" }
+    - { label: "Connect", href: "#connect" }
+  switch: { label: "עברית", href: "/" }
+
+hero:
+  title: "The Hamama (Greenhouse)"
+  tagline: "A living space for shared creation, community learning and human-centered innovation."
+  intro: "The Hamama is a small, open community for people who want to create together — without turning every idea into a startup, every group into an organization, or every collaboration into a hierarchy."
+  primary: { label: "Start a conversation", href: "mailto:greenhouse.hamama@gmail.com" }
+  secondary: { label: "Explore what we do", href: "#what" }
+
+portal_card:
+  label: "Hamama Portal"
+  text: "An open space for discovering initiatives, needs, and collaboration opportunities — including initiatives that originated outside Hamama."
+  cta: { label: "Explore Initiatives →", href: "https://portal.hamama.org" }
+
+why:
+  title: "Why it exists"
+  intro: "Many good ideas stay inside one person’s head. Many communities have talent, energy and goodwill — but no simple way to turn that energy into shared action. The Hamama exists to explore these questions in practice."
+  questions:
+    - "How do we create together without a boss?"
+    - "How do decisions emerge without forcing people into one structure?"
+    - "How do we recognize different kinds of contribution?"
+    - "How can technology support trust, freedom and responsibility?"
+
+what:
+  title: "What We Do"
+  intro: "In the Hamama, people can bring early ideas into conversation, find partners and language, and turn vague thoughts into clearer initiatives."
+  items:
+    - { title: "Bring an early idea", text: "Test it with others and let it become clearer through dialogue." }
+    - { title: "Find partners", text: "Find feedback, collaborators and shared language around the work." }
+    - { title: "Make it concrete", text: "Turn a vague thought into a clearer initiative or small experiment." }
+    - { title: "Explore organizing", text: "Explore decentralized ways of coordinating and sharing value." }
+    - { title: "Learn from others", text: "Learn from similar communities, labs and networks around the world." }
+
+focus:
+  title: "Our Current Focus Areas"
+  portal:
+    title: "Future Initiatives Portal"
+    subtitle: "Open gateway to a broader ecosystem"
+    text: "A place where ideas, people, needs, and independent initiatives can discover one another and form new collaborations beyond Hamama."
+    cta: { label: "Explore Future Initiatives →", href: "https://portal.hamama.org" }
+  cards:
+    - title: "VAST"
+      subtitle: "Value Attribution and Sharing Toolkit"
+      text: "A framework and toolset that helps groups map contribution and explore fair ways to recognize and share value over time."
+      dark: true
+    - title: "Community Systems"
+      subtitle: "Digital infrastructure for decentralized communities"
+      text: "Tools for initiatives, proposals, shared decisions, contribution tracking, collective ownership and open governance experiments."
+      cta: { label: "View Community Systems on GitHub", href: "https://github.com/ouripoupko/communities2" }
+    - title: "Human-Centered Innovation"
+      subtitle: "People, technology and society"
+      text: "A place for deeper exploration of decentralized communities, ethical technology, trust, attention and new interfaces between communities and institutions."
+
+work:
+  title: "How We Work"
+  intro: "The Hamama has no fixed hierarchy. People gather around what matters to them, take responsibility naturally, and let structure emerge from the group itself."
+  items:
+    - { title: "Start from real energy", text: "Pay attention to what people actually care about." }
+    - { title: "No coercion", text: "People join, lead, pause or step back according to real commitment." }
+    - { title: "Make things concrete", text: "Move from big words to small experiments." }
+    - { title: "Keep ownership shared", text: "Ideas, credit and value should not disappear into one person’s hands." }
+    - { title: "Let governance emerge", text: "Community systems grow from the actions and needs of the group." }
+
+book:
+  eyebrow: "Book / personal reflection"
+  title: "The Human Fabric"
+  subtitle: "A personal reflection from within the Greenhouse experiment"
+  body: "The Human Fabric is a personal reflection by Guy Blat, one of the initiators of the Hamama. It does not pretend to speak on behalf of all Hamama members, nor to define the community in a final way. It is an attempt to document one layer of learning from a small, living experiment in community, presence, responsibility, technology, and shared creation. The book explores the tension between warmth and structure, personal healing and collective practice, decentralized leadership and shared responsibility, technology and human presence. The Hamama itself remains wider than any single text, person, or interpretation."
+  invite: "This book is offered as an open invitation to think, question, and continue the conversation."
+  read: { label: "Read / Download the Book", href: "https://drive.google.com/file/d/1yoBRf1t1FerX7NBWePWRv8pY5OZ0TVcE/view?usp=sharing" }
+  talk: { label: "Start a conversation about the book", href: "mailto:greenhouse.hamama@gmail.com" }
+  cover_title: "The Human Fabric"
+  cover_subtitle: "Personal Journey, Collective Lessons, and the Greenhouse Experiment"
+  quote: "“Communities are not built once. They are woven again and again — through attention, responsibility, trust, conflict, repair, and care.”"
+
+connect:
+  title: "Let’s see what can grow together."
+  text: "If you are building a community, starting a shared initiative, researching new models of value, or asking similar questions — we would be happy to meet."
+  email: "greenhouse.hamama@gmail.com"
+  closing: "Together, slowly and responsibly."
