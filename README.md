@@ -31,7 +31,7 @@ npm run build    # בונה את האתר לתיקייה dist/
 
 ## פרסום
 
-כרגע האתר מוגש מהכתובת https://ourdecorg.github.io/HamamaSite/ (משתנה `BASE_PATH` ב-workflow). כשהדומיין hamama.org יחובר, מוחקים את שורות `BASE_PATH` ו-`SITE_URL` מ-`.github/workflows/deploy.yml`.
+האתר מוגש בכתובת https://hamama.org. אם צריך להגיש אותו מתת-נתיב (למשל github.io/HamamaSite), מגדירים `BASE_PATH` ב-workflow.
 
 
 כל דחיפה (push) לענף `main` מפעילה את `.github/workflows/deploy.yml`, שבונה את האתר ומפרסם אותו ב-GitHub Pages. הדומיין מוגדר בקובץ `public/CNAME`.
