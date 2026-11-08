@@ -1,8 +1,12 @@
 ---
 import '../styles/global.css';
 const { t } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const pad = (i) => String(i + 1).padStart(2, '0');
-const ext = (href) => href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {};
+// Resolve site-internal absolute paths ("/en/") against the deploy base; leave anchors/external links alone.
+const href = (h) => (h.startsWith('/') ? base + h : h);
+const ext = (h) => (h.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {});
+const other = t.meta.lang === 'he' ? 'en' : 'he';
 ---
 <!doctype html>
 <html lang={t.meta.lang} dir={t.meta.dir}>
@@ -15,143 +19,127 @@ const ext = (href) => href.startsWith('http') ? { target: '_blank', rel: 'noopen
   <meta property="og:description" content={t.meta.description} />
   <link rel="alternate" hreflang="he" href="https://hamama.org/" />
   <link rel="alternate" hreflang="en" href="https://hamama.org/en/" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@500;600&family=Fira+Sans:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;700&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700&family=Vollkorn:wght@500;600&family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <header class="nav-wrap">
-    <nav class="nav">
-      <a class="brand" href="#top">{t.nav.brand}</a>
-      <div class="nav-links">
-        {t.nav.items.map((i) => <a href={i.href} {...ext(i.href)}>{i.label}</a>)}
-        <a class="lang" href={t.nav.switch.href} hreflang={t.meta.lang === 'he' ? 'en' : 'he'}>{t.nav.switch.label}</a>
-      </div>
-    </nav>
-  </header>
-
-  <main id="top">
+  <main>
     <section class="hero">
-      <h1>{t.hero.title}</h1>
-      <p class="tagline">{t.hero.tagline}</p>
-      <p class="lead">{t.hero.intro}</p>
-      <div class="btns">
-        <a class="btn btn-primary" href={t.hero.primary.href}>{t.hero.primary.label}</a>
-        <a class="btn btn-ghost" href={t.hero.secondary.href}>{t.hero.secondary.label}</a>
+      <header class="nav">
+        <a class="brand" href="#">{t.nav.brand}</a>
+        <nav class="nav-links" aria-label="Main">
+          {t.nav.items.map((i) => <a class:list={{ strong: i.href.startsWith('http') }} href={href(i.href)} {...ext(i.href)}>{i.label}</a>)}
+          <a class="lang" href={href(t.nav.switch.href)} hreflang={other} lang={other}>{t.nav.switch.label}</a>
+        </nav>
+      </header>
+      <div class="hero-text">
+        <h1>{t.hero.title}</h1>
+        <p class="tagline">{t.hero.tagline}</p>
+        <p class="hero-intro">{t.hero.intro}</p>
+        <div class="hero-btns">
+          <a class="btn btn-primary" href={href(t.hero.primary.href)}>{t.hero.primary.label}</a>
+          <a class="btn btn-light" href={href(t.hero.secondary.href)}>{t.hero.secondary.label}</a>
+        </div>
       </div>
-      <div class="dots" aria-hidden="true">
-        <span class="d d1"></span><span class="ln"></span><span class="d d2"></span><span class="ln"></span><span class="d d3"></span>
+      <div class="dots" aria-hidden="true" dir="ltr">
+        <span class="dot d-mint"></span><span class="rule"></span><span class="dot d-big"></span><span class="rule"></span><span class="dot d-orange"></span>
       </div>
       <div class="portal-strip">
-        <div>
-          <p class="label">{t.portal_card.label}</p>
-          <p class="small">{t.portal_card.text}</p>
+        <div class="portal-strip-text">
+          <p class="eyebrow">{t.portal_card.label}</p>
+          <p>{t.portal_card.text}</p>
         </div>
-        <a class="btn btn-primary" href={t.portal_card.cta.href} {...ext(t.portal_card.cta.href)}>{t.portal_card.cta.label}</a>
+        <a class="btn btn-primary btn-43" href={t.portal_card.cta.href} {...ext(t.portal_card.cta.href)}>{t.portal_card.cta.label}</a>
       </div>
     </section>
 
-    <section class="dark band" id="why">
-      <div class="container">
-        <h2>{t.why.title}</h2>
-        <p class="lead center">{t.why.intro}</p>
-        <div class="grid g4">
-          {t.why.questions.map((q, i) => (
-            <div class="card glass"><span class="num">{pad(i)}</span><h3 class="q">{q}</h3></div>
-          ))}
-        </div>
+    <section class="why">
+      <h2>{t.why.title}</h2>
+      <p class="intro">{t.why.intro}</p>
+      <div class="why-grid">
+        {t.why.questions.map((q, i) => (
+          <div class="why-card"><p class="num">{pad(i)}</p><h3>{q}</h3></div>
+        ))}
       </div>
     </section>
 
-    <section class="band" id="what">
-      <div class="container">
-        <h2>{t.what.title}</h2>
-        <p class="lead center">{t.what.intro}</p>
-        <div class="grid g5">
-          {t.what.items.map((it) => (
-            <div class="card"><h3>{it.title}</h3><p class="small">{it.text}</p></div>
-          ))}
-        </div>
+    <section class="what" id="what">
+      <h2>{t.what.title}</h2>
+      <p class="intro">{t.what.intro}</p>
+      <div class="what-grid">
+        {t.what.items.map((it) => (
+          <div class="what-card"><h3>{it.title}</h3><p>{it.text}</p></div>
+        ))}
       </div>
     </section>
 
-    <section class="band tint" id="focus">
-      <div class="container">
-        <h2>{t.focus.title}</h2>
-        <div class="card portal-big">
-          <span class="corner-dot" aria-hidden="true"></span>
-          <h3 class="xl sans">{t.focus.portal.title}</h3>
-          <p class="sub green">{t.focus.portal.subtitle}</p>
-          <p class="small wide">{t.focus.portal.text}</p>
-          <svg class="graph" viewBox="0 0 1000 110" preserveAspectRatio="none" aria-hidden="true">
-            <g stroke="#c9d6cf" stroke-width="1.5">
-              <line x1="55" y1="30" x2="135" y2="45"/><line x1="135" y1="45" x2="215" y2="30"/>
-              <line x1="335" y1="30" x2="460" y2="45"/><line x1="530" y1="75" x2="650" y2="55"/>
-              <line x1="740" y1="22" x2="830" y2="40"/>
-            </g>
-            <circle cx="55" cy="30" r="8" fill="#2fb69a"/><circle cx="135" cy="45" r="11" fill="#0f7d63"/>
-            <circle cx="215" cy="30" r="8" fill="#e9a35f"/><circle cx="460" cy="45" r="8" fill="#c9b7ff"/>
-            <circle cx="650" cy="58" r="10" fill="#0f7d63"/><circle cx="830" cy="40" r="8" fill="#2fb69a"/>
-          </svg>
-          <a class="btn btn-primary sm" href={t.focus.portal.cta.href} {...ext(t.focus.portal.cta.href)}>{t.focus.portal.cta.label}</a>
+    <section class="focus" id="focus">
+      <h2>{t.focus.title}</h2>
+      <div class="portal-card">
+        <div class="portal-head"><h3>{t.focus.portal.title}</h3><span class="portal-dot" aria-hidden="true"></span></div>
+        <p class="portal-sub">{t.focus.portal.subtitle}</p>
+        <p class="portal-text">{t.focus.portal.text}</p>
+        <div class="graph" aria-hidden="true" dir="ltr">
+          <span class="edge e1"></span><span class="edge e2"></span>
+          <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span>
+          <span class="edge e3 wide-only"></span><span class="edge e4 wide-only"></span><span class="edge e5 wide-only"></span>
+          <span class="node n4"></span><span class="node n5"></span><span class="node n6"></span>
         </div>
-        <div class="grid g3">
-          {t.focus.cards.map((c) => (
-            <div class:list={['card', 'focus-card', { 'card-dark': c.dark }]}>
-              <h3 class="lg">{c.title}</h3>
-              <p class="sub amber">{c.subtitle}</p>
-              <p class="small">{c.text}</p>
-              {c.cta && <a class="btn btn-ghost sm" href={c.cta.href} {...ext(c.cta.href)}>{c.cta.label}</a>}
-            </div>
-          ))}
-        </div>
+        <a class="btn btn-portal" href={t.focus.portal.cta.href} {...ext(t.focus.portal.cta.href)}>{t.focus.portal.cta.label}</a>
       </div>
-    </section>
-
-    <section class="band tint" id="work">
-      <div class="container">
-        <h2>{t.work.title}</h2>
-        <p class="lead center">{t.work.intro}</p>
-        <div class="grid g5">
-          {t.work.items.map((it) => (
-            <div class="card compact"><h3>{it.title}</h3><p class="small">{it.text}</p></div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="band" id="book">
-      <div class="container book">
-        <div>
-          <p class="label">{t.book.eyebrow}</p>
-          <h2 class="start">{t.book.title}</h2>
-          <p class="book-sub">{t.book.subtitle}</p>
-          <p class="body">{t.book.body}</p>
-          <p class="invite">{t.book.invite}</p>
-          <div class="btns start">
-            <a class="btn btn-deep" href={t.book.read.href} target="_blank" rel="noopener">{t.book.read.label}</a>
-            <a class="link" href={t.book.talk.href}>{t.book.talk.label}</a>
+      <div class="focus-grid">
+        {t.focus.cards.map((c, i) => (
+          <div class:list={['focus-card', `fc${i + 1}`]}>
+            <h3>{c.title}</h3>
+            <p class="fc-sub">{c.subtitle}</p>
+            <p class="fc-text">{c.text}</p>
+            {c.cta && <a class="btn btn-soft" href={c.cta.href} {...ext(c.cta.href)}>{c.cta.label}</a>}
           </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <h2>{t.work.title}</h2>
+      <p class="intro">{t.work.intro}</p>
+      <div class="work-grid">
+        {t.work.items.map((it) => (
+          <div class="work-card"><h3>{it.title}</h3><p>{it.text}</p></div>
+        ))}
+      </div>
+    </section>
+
+    <section class="book" id="human-fabric">
+      <div class="book-text">
+        <p class="eyebrow">{t.book.eyebrow}</p>
+        <h2>{t.book.title}</h2>
+        <p class="book-sub">{t.book.subtitle}</p>
+        <p class="book-body">{t.book.body}</p>
+        <div class="invite"><p>{t.book.invite}</p></div>
+        <div class="book-btns">
+          <a class="btn btn-deep" href={t.book.read.href} target="_blank" rel="noopener">{t.book.read.label}</a>
+          <a class="text-link" href={t.book.talk.href}>{t.book.talk.label}</a>
         </div>
-        <div class="book-side">
-          <div class="cover" dir="ltr">
-            <span class="cl"></span><span class="cl short"></span><span class="cl"></span>
+      </div>
+      <div class="book-side">
+        <div class="cover" dir="ltr" lang="en">
+          <div class="cover-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
             <h3>{t.book.cover_title}</h3>
             <p>{t.book.cover_subtitle}</p>
           </div>
-          <blockquote class="card quote">{t.book.quote}</blockquote>
         </div>
+        <blockquote class="quote"><p>{t.book.quote}</p></blockquote>
       </div>
     </section>
 
-    <section class="dark band cta" id="connect">
-      <div class="container narrow">
-        <h2 class="huge">{t.connect.title}</h2>
-        <p class="lead center">{t.connect.text}</p>
-        <a class="btn btn-glass" href={`mailto:${t.connect.email}`}>{t.connect.email}</a>
-        <p class="closing">{t.connect.closing}</p>
-      </div>
+    <section class="connect" id="connect">
+      <h2>{t.connect.title}</h2>
+      <p class="intro">{t.connect.text}</p>
+      <a class="btn btn-glass" href={`mailto:${t.connect.email}`}>{t.connect.email}</a>
+      <p class="closing">{t.connect.closing}</p>
     </section>
   </main>
 </body>

@@ -19,7 +19,7 @@
 ## עיצוב
 
 - מבנה הדף: `src/components/Home.astro`
-- צבעים וגופנים: `src/styles/global.css`
+- צבעים וגופנים: `src/styles/global.css`. כל הערכים (צבעים, גדלים, רווחים, צללים, נקודות שבירה 810/1200) נמדדו מאתר ה-Framer המקורי.
 
 ## הרצה מקומית
 
@@ -30,6 +30,9 @@ npm run build    # בונה את האתר לתיקייה dist/
 ```
 
 ## פרסום
+
+כרגע האתר מוגש מהכתובת https://ourdecorg.github.io/HamamaSite/ (משתנה `BASE_PATH` ב-workflow). כשהדומיין hamama.org יחובר, מוחקים את שורות `BASE_PATH` ו-`SITE_URL` מ-`.github/workflows/deploy.yml`.
+
 
 כל דחיפה (push) לענף `main` מפעילה את `.github/workflows/deploy.yml`, שבונה את האתר ומפרסם אותו ב-GitHub Pages. הדומיין מוגדר בקובץ `public/CNAME`.
 

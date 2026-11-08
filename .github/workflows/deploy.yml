@@ -20,6 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3
+        env:
+          # Served from the project sub-path until hamama.org is pointed at GitHub Pages.
+          # When the custom domain is live, delete these two lines.
+          BASE_PATH: /HamamaSite
+          SITE_URL: https://ourdecorg.github.io
   deploy:
     needs: build
     runs-on: ubuntu-latest
