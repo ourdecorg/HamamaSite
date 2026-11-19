@@ -95,3 +95,16 @@ connect:
   text: "If you are building a community, starting a shared initiative, researching new models of value, or asking similar questions — we would be happy to meet."
   email: "greenhouse.hamama@gmail.com"
   closing: "Together, slowly and responsibly."
+
+privacy:
+  title: "Privacy Policy"
+  back: "Back to home"
+  page_title: "Privacy policy: the Hamama digital agent account"
+  intro: "The Google account hermeshamama@gmail.com is used by the digital agent of the Hamama community (hamama.org) for community purposes only."
+  items:
+    - { label: "Access", text: "The agent accesses only the mail, calendar, files, documents, spreadsheets and contacts of this account, and never other people's accounts." }
+    - { label: "Use", text: "The data is used to manage shared files, to summarize inquiries received through the website, and for tasks community members request." }
+    - { label: "Sharing", text: "We do not sell data or pass it to third parties, other than Google's own services and the AI services the agent runs on." }
+    - { label: "Retention and deletion", text: "Data is kept only as long as needed. To request deletion or ask questions, contact greenhouse.hamama@gmail.com." }
+    - { label: "Revoking access", text: "Access can be revoked at any time from the Google account settings." }
+  home: "/en/"

@@ -275,3 +275,11 @@ html[dir='rtl'] .btn-portal, html[dir='rtl'] .focus-card { align-items: flex-sta
 .hero h1, .tagline, .hero-intro, .why .intro, .what .intro, .portal-head h3, .book-sub, .connect h2, .connect .intro { text-wrap: balance; }
 .portal-text { text-wrap: pretty; }
 .nav a, .btn, .num, .eyebrow, .text-link { white-space: nowrap; }
+
+/* Privacy page */
+.privacy { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; display: flex; flex-direction: column; gap: 24px; }
+.privacy h1 { font-family: var(--serif); font-weight: 600; font-size: 36px; line-height: 1.15; color: var(--deep); }
+.privacy-intro { font-size: 18px; line-height: 1.6; color: var(--text); }
+.privacy-list { margin: 0; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.6; color: var(--text); }
+.privacy-list strong { color: var(--deep); }
+.privacy .text-link { color: var(--green-dark); font-weight: 600; }
