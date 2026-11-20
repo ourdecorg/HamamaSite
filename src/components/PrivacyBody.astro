@@ -1,0 +1,15 @@
+---
+const { p } = Astro.props;
+const link = (s) => s.replace(/(https?:\/\/[^\s,]+?)(?=[,.]?(\s|$))/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+  .replace(/([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g, (m) => `<a href="mailto:${m}">${m}</a>`);
+---
+<div class="privacy-body">
+  {p.sections.map((s) => (
+    <div class="pb-sec">
+      <h2>{s.h}</h2>
+      {s.p && <p set:html={link(s.p)} />}
+      {s.ul && <ul>{s.ul.map((x) => <li set:html={link(x)} />)}</ul>}
+      {s.ol && <ol>{s.ol.map((x) => <li set:html={link(x)} />)}</ol>}
+    </div>
+  ))}
+</div>

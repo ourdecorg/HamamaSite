@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import PrivacyBody from './PrivacyBody.astro';
 const { t } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const pad = (i) => String(i + 1).padStart(2, '0');
@@ -141,6 +142,24 @@ const other = t.meta.lang === 'he' ? 'en' : 'he';
       <a class="btn btn-glass" href={`mailto:${t.connect.email}`}>{t.connect.email}</a>
       <p class="closing">{t.connect.closing}</p>
     </section>
+    <footer class="site-footer">
+      <button type="button" class="privacy-open" data-privacy-open>{t.privacy.link}</button>
+    </footer>
   </main>
+  <dialog class="privacy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+    <div class="privacy-dialog-head">
+      <h2 id="privacy-title">{t.privacy.title}</h2>
+      <button type="button" class="privacy-close" data-privacy-close aria-label={t.privacy.close}>×</button>
+    </div>
+    <PrivacyBody p={t.privacy} />
+  </dialog>
+  <script is:inline>
+    (function () {
+      var d = document.getElementById('privacy-dialog');
+      document.querySelector('[data-privacy-open]').addEventListener('click', function () { d.showModal(); });
+      d.querySelector('[data-privacy-close]').addEventListener('click', function () { d.close(); });
+      d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+    })();
+  </script>
 </body>
 </html>

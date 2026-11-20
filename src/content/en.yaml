@@ -97,14 +97,28 @@ connect:
   closing: "Together, slowly and responsibly."
 
 privacy:
+  link: "Privacy Policy"
   title: "Privacy Policy"
+  close: "Close"
   back: "Back to home"
-  page_title: "Privacy policy: the Hamama digital agent account"
-  intro: "The Google account hermeshamama@gmail.com is used by the digital agent of the Hamama community (hamama.org) for community purposes only."
-  items:
-    - { label: "Access", text: "The agent accesses only the mail, calendar, files, documents, spreadsheets and contacts of this account, and never other people's accounts." }
-    - { label: "Use", text: "The data is used to manage shared files, to summarize inquiries received through the website, and for tasks community members request." }
-    - { label: "Sharing", text: "We do not sell data or pass it to third parties, other than Google's own services and the AI services the agent runs on." }
-    - { label: "Retention and deletion", text: "Data is kept only as long as needed. To request deletion or ask questions, contact greenhouse.hamama@gmail.com." }
-    - { label: "Revoking access", text: "Access can be revoked at any time from the Google account settings." }
   home: "/en/"
+  sections:
+    - { h: "Who we are", p: "The Hamama is a community of people and a digital agent (a bot)." }
+    - h: "What information is collected, and from where"
+      ul:
+        - "Inquiries sent to greenhouse.hamama@gmail.com. They are forwarded automatically to the agent's mailbox. The information is whatever the sender wrote, including name and email address."
+        - "Files, documents and spreadsheets shared with the account."
+        - "Messages community members write to the agent in the Hamama Telegram group."
+    - h: "What we do with it"
+      ul:
+        - "We summarize inquiries and post the summary in the closed group of Hamama members."
+        - "We pass an inquiry on to a community member who asked to handle it."
+        - "We manage shared files and carry out tasks community members requested."
+    - { h: "What we do not do", p: "We do not sell data, use it for advertising, or access other people's accounts. Data is passed on only to Google's services and to the AI provider the agent runs on (Anthropic), in order to process the request." }
+    - { h: "Retention", p: "Inquiries are kept in the agent's mailbox." }
+    - h: "How to ask to see, correct or delete your information"
+      ol:
+        - "Send an email to greenhouse.hamama@gmail.com with the subject \"Deletion request\" or \"Access request\"."
+        - "State the address from which you sent the original inquiry."
+    - { h: "How to revoke the app's access to your Google account", p: "If you connected your Google account to a Hamama service, go to https://myaccount.google.com/permissions, choose the Hamama app and click \"Remove access\"." }
+    - { h: "Questions", p: "greenhouse.hamama@gmail.com" }
